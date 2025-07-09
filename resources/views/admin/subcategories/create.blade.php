@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="bg-gradient-to-r from-blue-50 to-blue-100 -mx-4 -my-2 px-4 py-6">
             <h2 class="font-semibold text-2xl text-blue-900 leading-tight">
-                {{ __('Create New Category') }}
+                {{ __('Create New Sub Category') }}
             </h2>
             <p class="text-blue-700 mt-1">Add a new category to organize your content</p>
         </div>
@@ -12,7 +12,7 @@
         <div class="container mx-auto px-4 py-8">
             <!-- Back Button -->
             <div class="mb-6">
-                <a href="{{ route('categories.index') }}"
+                <a href="{{ route('subcategories.index') }}"
                    class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-colors duration-200">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
@@ -29,7 +29,7 @@
                         <p class="text-blue-100 mt-1">Fill in the details for your new category</p>
                     </div>
 
-                    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
+                    <form action="{{ route('subcategories.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                         @csrf
                         
                         <div class="space-y-8">
@@ -49,6 +49,22 @@
                                         <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                                         </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="name" class="block text-sm font-semibold text-blue-900">
+                                    Name
+                                </label>
+                                <div class="relative">
+                                    <select name="category_id"> 
+                                            
+                                     @foreach (App\Models\Category::all() as $category)
+                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                        
+
+                                    </select>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +120,7 @@
                             </button>
                             <button type="submit" 
                                     class="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
-                                Create Category
+                                Create Sub Category
                             </button>
                         </div>
                     </form>

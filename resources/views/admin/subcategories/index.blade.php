@@ -4,7 +4,7 @@
         <div class="bg-blue-200 text-gray-50 m-2 p-2 rounded-md">{{ session('message') }}</div>
         @endif
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Categories') }}
+            {{ __('SubCategories') }}
         </h2>
     </x-slot>
     <!-- This file deals with the styling and table for Admin Categories.. -->
@@ -14,8 +14,8 @@
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
                     <div class="flex justify-end">
-                        <a href="{{ route('categories.create') }}"
-                        class="py-2 px-4 m-2 bg-blue-400 hover:bg-blue-200 text-gray-50 rounded-md">New Category
+                        <a href="{{ route('subcategories.create') }}"
+                        class="py-2 px-4 m-2 bg-blue-400 hover:bg-blue-200 text-gray-50 rounded-md">New Sub Category
                         </a>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-        @foreach ($categories as $category)
+        @forelse ($sub_categories as $category)
         
         
         <tr>
@@ -79,8 +79,10 @@
                                 </a>
                               </form>
             </td>
+            @empty
+            <td><div class="m-2 p-2">No Sub Categories</div></td>
         </tr>
-        @endforeach
+        @endforelse
         
 
 

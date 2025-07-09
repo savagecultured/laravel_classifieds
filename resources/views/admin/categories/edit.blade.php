@@ -2,9 +2,9 @@
     <x-slot name="header">
         <div class="bg-gradient-to-r from-blue-50 to-blue-100 -mx-4 -my-2 px-4 py-6">
             <h2 class="font-semibold text-2xl text-blue-900 leading-tight">
-                {{ __('Create New Category') }}
+                {{ $category->name }}
             </h2>
-            <p class="text-blue-700 mt-1">Add a new category to organize your content</p>
+            <p class="text-blue-700 mt-1">Add some salt and pepper</p>
         </div>
     </x-slot>
 
@@ -29,8 +29,9 @@
                         <p class="text-blue-100 mt-1">Fill in the details for your new category</p>
                     </div>
 
-                    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
+                    <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data" class="p-8">
                         @csrf
+                        @method('PUT')
                         
                         <div class="space-y-8">
                             <!-- Category Name -->
@@ -43,7 +44,7 @@
                                            name="name" 
                                            id="name" 
                                            class="w-full px-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-blue-50/30 placeholder-blue-400" 
-                                           placeholder="Enter category name (e.g., Technology, Health, Sports)"
+                                           value="{{ $category->name }}"
                                            required />
                                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                         <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,6 +59,9 @@
                                 <label for="image" class="block text-sm font-semibold text-blue-900">
                                     Category Image
                                 </label>
+                                <div class="w-full m-2 p-2">
+                                    <img class="h-32 w-32" src="{{ Storage::url($category->image) }}">
+                                </div>
                                 <div class="space-y-4">
                                     <!-- Image Preview -->
                                     <div id="imagePreview" class="hidden">
@@ -104,7 +108,7 @@
                             </button>
                             <button type="submit" 
                                     class="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
-                                Create Category
+                                Edit Category
                             </button>
                         </div>
                     </form>
